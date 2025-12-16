@@ -1,4 +1,5 @@
 import { View , Text , StyleSheet, ImageBackground} from 'react-native'
+import { Link } from 'expo-router'
 
 
 const app = () => {
@@ -12,9 +13,12 @@ const app = () => {
         <div style={styles.card}>
 
         </div>
-        <Text style={styles.text}>
+        <Text style={styles.title}>
           myUdayana
         </Text>
+        <Link href={"/explore"} style={styles.link}>
+          Explore
+        </Link>
       </ImageBackground>
 
       <div>
@@ -32,11 +36,20 @@ const styles = StyleSheet.create({
     flex : 1,
     flexDirection: 'column'
   },
-  text : {
+  title : {
     color: 'white',
     textAlign: 'center',
     fontSize: 50,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    marginBottom: 120,
+  },
+  link : {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 50,
+    fontWeight: 'bold',
+    textDecorationLine:"underline",
+    padding: 4,
   },
   image:{
     width: "100%",
