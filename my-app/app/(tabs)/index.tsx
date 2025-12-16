@@ -1,4 +1,4 @@
-import { View , Text , StyleSheet, ImageBackground} from 'react-native'
+import { View , Text , StyleSheet, ImageBackground, Pressable} from 'react-native'
 import { Link } from 'expo-router'
 
 
@@ -10,20 +10,30 @@ const app = () => {
         resizeMode="cover"
         style = {styles.image}
       >
-        <div style={styles.card}>
-
-        </div>
+       
         <Text style={styles.title}>
           myUdayana
         </Text>
-        <Link href={"/explore"} style={styles.link}>
-          Explore
+
+        <Link href={"/explore"} style={{marginHorizontal:"auto"}}> {/* ubah link jd button */ }
+          <Pressable style={styles.button}>
+            <Text style={styles.buttonText}>
+              Explore
+            </Text>
+          </Pressable>
         </Link>
+        <Link href={"/contact"} style={{marginHorizontal:"auto"}}> {/* ubah link jd button */ }
+          <Pressable style={styles.button}>
+            <Text style={styles.buttonText}>
+              Contact
+            </Text>
+          </Pressable>
+        </Link>
+
+
       </ImageBackground>
 
-      <div>
-
-      </div>
+    
       
     </View>
   )
@@ -51,6 +61,21 @@ const styles = StyleSheet.create({
     textDecorationLine:"underline",
     padding: 4,
   },
+  button: {
+    height: 60,
+    borderRadius: 20,
+    backgroundColor: 'rgba(0,0,0,0.75)',
+    justifyContent: 'center',
+    padding: 6,
+  },
+  buttonText : {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textDecorationLine:"underline",
+    padding: 4,
+  },
   image:{
     width: "100%",
     height: "50%",
@@ -64,7 +89,5 @@ const styles = StyleSheet.create({
     backgroundColor:"white",
     borderCurve: "circular",
     position: "relative"
-    
-
   }
 })

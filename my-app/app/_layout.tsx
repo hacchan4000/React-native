@@ -16,6 +16,14 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+
+        {/* <Stack.Screen name="(fakultas)" options={{ headerShown: false }} />  */}
+        {/* ini biar semua page di fakultas g nunjukin header */}
+
+        {/* <Stack.Screen name="index" options={{ title: 'Home' , headerShown: false}} />
+        <Stack.Screen name="explore" options={{ title: 'Explore' }} />
+        <Stack.Screen name="contact" options={{ title: 'Contact' }} /> */}
+
         <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
       </Stack>
       <StatusBar style="auto" />

@@ -1,10 +1,12 @@
+// file ini untuk kontrol tab bar dan kelakuan maupun bentuk tiap tombol di tab bar jd file yg di dalam tabs buat konten dr tabs
 import { Tabs } from 'expo-router';
 import React from 'react';
-
+// (tabs) itu direktori spesial yg bilang ke router expo untuk make layout tabs
 import { HapticTab } from '@/components/haptic-tab';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -12,9 +14,12 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,  //ini buat skema warna bar
+        tabBarInactiveTintColor: Colors[colorScheme ?? 'light'].tint,
+
         headerShown: false,
         tabBarButton: HapticTab,
+        // headerTitleAlign: 'center',
       }}>
       <Tabs.Screen
         name="index"
@@ -28,6 +33,13 @@ export default function TabLayout() {
         options={{
           title: 'Explore',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="contact"
+        options={{
+          title: 'Contact',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="42.circle" color={color} />,
         }}
       />
     </Tabs>
