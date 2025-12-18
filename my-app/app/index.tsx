@@ -1,3 +1,4 @@
+// ini halaman utama myUdayana
 import { View , Text , StyleSheet, ImageBackground, Pressable} from 'react-native'
 import { Link } from 'expo-router'
 
@@ -10,11 +11,15 @@ const app = () => {
         resizeMode="cover"
         style = {styles.image}
       >
+        <View style={styles.card}>
+
+        </View>
        
         <Text style={styles.title}>
           myUdayana
         </Text>
 
+        {/* ini untuk navigasi ke halaman lain */}
         <Link href={"/explore"} style={{marginHorizontal:"auto"}}> {/* ubah link jd button */ }
           <Pressable style={styles.button}>
             <Text style={styles.buttonText}>
@@ -26,6 +31,13 @@ const app = () => {
           <Pressable style={styles.button}>
             <Text style={styles.buttonText}>
               Contact
+            </Text>
+          </Pressable>
+        </Link>
+        <Link href={"/fakultas"} style={{marginHorizontal:"auto"}}> {/* ubah link jd button */ }
+          <Pressable style={styles.button}>
+            <Text style={styles.buttonText}>
+              Dosen
             </Text>
           </Pressable>
         </Link>
@@ -41,7 +53,7 @@ const app = () => {
 
 export default app
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({ // ini untuk css nya pake camel case
   container : {
     flex : 1,
     flexDirection: 'column'
@@ -63,10 +75,13 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 60,
+    width: 150,
     borderRadius: 20,
     backgroundColor: 'rgba(0,0,0,0.75)',
     justifyContent: 'center',
     padding: 6,
+    marginBottom: 5,
+    
   },
   buttonText : {
     color: 'white',
@@ -81,13 +96,19 @@ const styles = StyleSheet.create({
     height: "50%",
     flex: 1,
     resizeMode: "contain",
-    justifyContent:"center"
+    justifyContent:"center",
+    position: 'absolute'
   },
   card : {
-    height:"30%",
-    width:"90%",
-    backgroundColor:"white",
-    borderCurve: "circular",
-    position: "relative"
+    height:"60%",
+    width:"85%",
+    backgroundColor:"#0a2aabff",
+    position: 'absolute',
+    borderRadius: 20,
+    justifyContent: "center",
+    alignSelf: "center"
+  },
+  cardContainer: {
+    
   }
 })
