@@ -11,14 +11,11 @@ const app = () => {
         resizeMode="cover"
         style = {styles.image}
       >
-        <View style={styles.card}>
-
+        <View style={styles.card}> 
+           {/* ini untuk kartu online unud */}
         </View>
        
-        <Text style={styles.title}>
-          myUdayana
-        </Text>
-
+   
         {/* ini untuk navigasi ke halaman lain */}
         <Link href={"/explore"} style={{marginHorizontal:"auto"}}> {/* ubah link jd button */ }
           <Pressable style={styles.button}>
@@ -41,9 +38,18 @@ const app = () => {
             </Text>
           </Pressable>
         </Link>
+        <Link href={"/todo"} style={{marginHorizontal:"auto"}}> {/* ubah link jd button */ }
+          <Pressable style={styles.button}>
+            <Text style={styles.buttonText}>
+              To Do list
+            </Text>
+          </Pressable>
+        </Link>
 
 
       </ImageBackground>
+
+      
 
     
       
@@ -100,13 +106,14 @@ const styles = StyleSheet.create({ // ini untuk css nya pake camel case
     position: 'absolute'
   },
   card : {
-    height:"60%",
+    height:"48%",
     width:"85%",
-    backgroundColor:"#0a2aabff",
+    backgroundColor:"#1f4b9cff",
     position: 'absolute',
     borderRadius: 20,
     justifyContent: "center",
-    alignSelf: "center"
+    alignSelf: "center",
+    marginTop: 90
   },
   cardContainer: {
     

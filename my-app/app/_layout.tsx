@@ -3,6 +3,8 @@ import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { FlatList, Appearance } from 'react-native'; // appereance untuk nunjukin preferensi tema pengguna
 import { Colors } from '@/constants/theme';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
 export const unstable_settings = {
   anchor: '(tabs)',
 };
@@ -21,6 +23,7 @@ export default function RootLayout() {
         <Stack.Screen name="explore" options={{ headerShown: true , title: 'Explore', headerTitle: 'Explore'}} />
 
         <Stack.Screen name="fakultas" options={{ headerShown: true , title: 'Fakultas', headerTitle: 'Dosen unud'}} />
+        <Stack.Screen name="todo" options={{ headerShown: false , title: 'ToDO', headerTitle: 'List Tugas'}} />
 
         {/* <Stack.Screen name="(fakultas)" options={{ headerShown: false }} />  */}
         {/* ini biar semua page di fakultas g nunjukin header */}
