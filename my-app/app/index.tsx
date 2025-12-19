@@ -9,47 +9,68 @@ const app = () => {
       <ImageBackground 
         source={require('@/assets/images/unudBg.jpg')}
         resizeMode="cover"
-        style = {styles.image}
+        style = {styles.banner}
       >
+         {/* ini untuk kartu online unud */}
         <View style={styles.card}> 
-           {/* ini untuk kartu online unud */}
+          
+           <View style={styles.card2}>
+             <ImageBackground
+              source={require('@/assets/images/Logo-unud-baru.png')}
+              resizeMode='cover'
+              style = {styles.logo}
+              />
+              <View style={styles.textLogo2}>
+                <Text style={styles.textLogo}>KARTU TANDA MAHASISWA</Text>
+                <Text style={styles.textLogo}>UNIVERSITAS UDAYANA</Text>
+              </View>
+              
+              <ImageBackground
+              source={require('@/assets/images/logoBNI.png')}
+              resizeMode='contain'
+              style={styles.logo2}
+              />
+           </View>
+
+           <ImageBackground
+           source={require('@/assets/images/Logo-unud-baru2.png')}
+              resizeMode='contain'
+              style={styles.logo3}
+           />
+
+           <View style={styles.card2}>
+              <View style={styles.esim}></View>
+              <View style={styles.pasFoto}></View>
+           </View>
+
+           <View style={{marginLeft: 15, marginBottom: 20}}>
+
+            <Text style={styles.textId}>0123 4567 8910 1112</Text>
+            <Text style={{fontSize: 17, fontWeight: '400'}}>Aditya Chandra Nugraha</Text>
+            <Text style={{fontSize: 10}}>S1 TEKNIK INFORMATIKA 2308561092</Text>
+            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+              <View style={styles.barcode}></View>
+              <ImageBackground
+              source={require('@/assets/images/logoGPN.png')}
+              resizeMode='contain'
+              style={{width: 50, height: 30}}
+              />
+            </View>
+            
+           </View>
+
+           <View>
+           
+           </View>
+          
         </View>
-       
    
         {/* ini untuk navigasi ke halaman lain */}
-        <Link href={"/explore"} style={{marginHorizontal:"auto"}}> {/* ubah link jd button */ }
-          <Pressable style={styles.button}>
-            <Text style={styles.buttonText}>
-              Explore
-            </Text>
-          </Pressable>
-        </Link>
-        <Link href={"/contact"} style={{marginHorizontal:"auto"}}> {/* ubah link jd button */ }
-          <Pressable style={styles.button}>
-            <Text style={styles.buttonText}>
-              Contact
-            </Text>
-          </Pressable>
-        </Link>
-        <Link href={"/fakultas"} style={{marginHorizontal:"auto"}}> {/* ubah link jd button */ }
-          <Pressable style={styles.button}>
-            <Text style={styles.buttonText}>
-              Dosen
-            </Text>
-          </Pressable>
-        </Link>
-        <Link href={"/todo"} style={{marginHorizontal:"auto"}}> {/* ubah link jd button */ }
-          <Pressable style={styles.button}>
-            <Text style={styles.buttonText}>
-              To Do list
-            </Text>
-          </Pressable>
-        </Link>
-
-
+        
       </ImageBackground>
 
-      
+      <View></View>
+      <View></View>
 
     
       
@@ -97,7 +118,7 @@ const styles = StyleSheet.create({ // ini untuk css nya pake camel case
     textDecorationLine:"underline",
     padding: 4,
   },
-  image:{
+  banner:{
     width: "100%",
     height: "50%",
     flex: 1,
@@ -105,17 +126,79 @@ const styles = StyleSheet.create({ // ini untuk css nya pake camel case
     justifyContent:"center",
     position: 'absolute'
   },
+
+
+  textLogo : {
+    fontSize: 7,
+    color: 'white'
+  },
+  textLogo2 : {
+    marginVertical: 15,
+  },
+  textId : {
+    fontWeight: '600',
+    fontSize: 17
+  },
+  textId2 : {
+    fontWeight: '400',
+    fontSize: 10
+  },
+
+  logo : {
+    width: 25,
+    height: 30,
+    margin: 10,
+
+  },
+  logo2 : {
+    width: 80,
+    height: 40,
+    marginHorizontal: 90,
+    marginTop: 5
+  },
+  logo3 : {
+    width: 150,
+    height: 150,
+    alignSelf: 'center',
+    position: 'absolute',
+    marginTop: 30,
+    opacity: 0.2,
+    marginRight: 5
+  },
   card : {
-    height:"48%",
-    width:"85%",
+    height:"51%",
+    width:"86%",
     backgroundColor:"#1f4b9cff",
     position: 'absolute',
     borderRadius: 20,
-    justifyContent: "center",
+
     alignSelf: "center",
     marginTop: 90
   },
-  cardContainer: {
-    
+  card2: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  pasFoto: {
+    height: 70,
+    width: 60,
+    backgroundColor: '#c01a1aff',
+    marginRight: 23,
+    marginTop: 5
+  },
+  esim : {
+    height: 30,
+    width: 40,
+    backgroundColor: '#cea731ff',
+    borderRadius: 8,
+    marginLeft: 25,
+    alignSelf: 'center'
+  },
+  barcode : {
+    width: 180,
+    height: 25,
+    backgroundColor: '#ffff',
+    position: 'relative',
+    marginTop: 5
   }
 })
