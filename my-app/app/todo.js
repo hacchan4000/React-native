@@ -47,7 +47,7 @@ const todo = () => {
     }, [])
 
 
-    useEffect(() => { // ini untuk nyimpen data ke lokal storage 
+    useEffect(() => { // ini untuk nyimpen data ke lokal storage dr list data
     const simpanData = async () => {
         try {
             const jsonValue = JSON.stringify(todos)

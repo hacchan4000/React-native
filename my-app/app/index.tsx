@@ -67,10 +67,24 @@ const app = () => {
    
         {/* ini untuk navigasi ke halaman lain */}
         
+        
       </ImageBackground>
 
-      <View></View>
-      <View></View>
+      {/* ini untuk balanced */}
+      <View style={styles.balanceContainer}>
+        <View style={styles.balance}>
+          <Text></Text>
+
+        </View>
+        
+      </View>
+
+      {/* ini untuk fitur-fitur lain yang i havent thought of */}
+      <View>
+        <View style={styles.fiturBox}>
+
+        </View>
+      </View>
 
     
       
@@ -83,7 +97,8 @@ export default app
 const styles = StyleSheet.create({ // ini untuk css nya pake camel case
   container : {
     flex : 1,
-    flexDirection: 'column'
+    flexDirection: 'column',
+
   },
   title : {
     color: 'white',
@@ -169,7 +184,7 @@ const styles = StyleSheet.create({ // ini untuk css nya pake camel case
     height:"51%",
     width:"86%",
     backgroundColor:"#1f4b9cff",
-    position: 'absolute',
+    position: 'relative',
     borderRadius: 20,
 
     alignSelf: "center",
@@ -200,5 +215,29 @@ const styles = StyleSheet.create({ // ini untuk css nya pake camel case
     backgroundColor: '#ffff',
     position: 'relative',
     marginTop: 5
+  },
+  balanceContainer: {
+    justifyContent: 'center',
+   
+    marginTop: 380
+
+  }
+  ,
+  balance : {
+    width: '95%',
+    height: 80,
+    backgroundColor: '#d4d9e7ff',
+    borderStyle: 'solid',
+    borderRadius: 20,
+    alignSelf: 'center'
+  },
+  fiturBox : {
+    width: '95%',
+    height: 290,
+    marginTop: 10,
+    backgroundColor: '#d7dae3ff',
+    alignSelf: 'center',
+    borderStyle: 'solid',
+    borderRadius: 20,
   }
 })

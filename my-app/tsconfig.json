@@ -13,5 +13,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-, "constants/NamaDosen.js", "context/themeContext.js", "app/todo.js"  ]
+, "constants/NamaDosen.js", "context/themeContext.js", "app/todo.js", "styles/home.js"  ]
 }
