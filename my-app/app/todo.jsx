@@ -12,6 +12,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage"; // ini lib
 
 import { Inter_500Medium, useFonts } from '@expo-google-fonts/inter'
 import Animated, { LinearTransition } from 'react-native-reanimated'; //animasi dasar react native
+import { useRouter } from 'expo-router';
 
 
 const todo = () => {
@@ -26,6 +27,7 @@ const todo = () => {
     /* data list todo ditampung di array dlu dan di sort berdasarkan id terbesar ke kecil */
     const [todos, setTodos] = useState([]) 
     const [text, setText] = useState('') /* untuk nampung input text */
+    const router = useRouter()
 
     useEffect(() => { //ini untuk loading data ke dlm app kt
     const ambilData = async () => {
@@ -84,6 +86,12 @@ const todo = () => {
     const styles = myStyle(skemaWarna, tema) 
     const Container = Platform.OS === "web" ? ScrollView : SafeAreaView
 
+    
+
+    const handlePress = (id) => {
+        router.push(`/todos/${id}`)
+    }
+
   return (
     <Container  style={styles.container}>
         <View style={styles.searchContainer}>
@@ -119,13 +127,16 @@ const todo = () => {
             keyboardDismissMode='on-drag'
             renderItem={({item}) => (
                 <View style={styles.row}>
+                    
                     <View style={styles.textRow}>
-                        <Text 
-                        style={[styles.title, item.completed && styles.titleCompleted]}
-                        onPress={() => updateTodo(item.id)}
-                        >
-                            {item.title}
-                        </Text>
+                        <Pressable onPress={() => handlePress(item.id)} onLongPress={() => updateTodo(item.id)}>
+                            <Text 
+                            style={[styles.title, item.completed && styles.titleCompleted]}
+                            
+                            >
+                                {item.title}
+                            </Text>
+                        </Pressable>
                     </View>
 
                     <Pressable style={styles.tombol2} onPress={() => deleteTodo(item.id)}>

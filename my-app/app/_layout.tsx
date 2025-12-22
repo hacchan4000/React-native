@@ -17,15 +17,16 @@ export default function RootLayout() {
   return (
     <Provider> {/* ini wrap elemen lain jd values di dlm provider bsa di akses childrenny */}
       <SafeAreaProvider>
-        <Stack screenOptions={{headerStyle: {backgroundColor:theme.headerBackground},  // style untuk header 
+        <Stack screenOptions={{headerStyle: {backgroundColor:theme.headerBackground}, headerShown: false,  // style untuk header 
           headerTintColor: theme.text, headerShadowVisible: false}}>
 
-              <Stack.Screen name="index" options={{ headerShown: false , title: 'Home'}} />
-              <Stack.Screen name="contact" options={{ headerShown: true , title: 'Contact', headerTitle: 'Contact Us'}} />
-              <Stack.Screen name="explore" options={{ headerShown: true , title: 'Explore', headerTitle: 'Explore'}} />
+              <Stack.Screen name="index" options={{ title: 'Home'}} />
+              <Stack.Screen name="contact" options={{ title: 'Contact', headerTitle: 'Contact Us'}} />
+              <Stack.Screen name="explore" options={{ title: 'Explore', headerTitle: 'Explore'}} />
 
-              <Stack.Screen name="fakultas" options={{ headerShown: true , title: 'Fakultas', headerTitle: 'Dosen unud'}} />
-              <Stack.Screen name="todo" options={{ headerShown: false , title: 'ToDO', headerTitle: 'List Tugas'}} />
+              <Stack.Screen name="fakultas" options={{ title: 'Fakultas', headerTitle: 'Dosen unud'}} />
+              <Stack.Screen name="todo" options={{ title: 'ToDO', headerTitle: 'List Tugas'}} />
+              <Stack.Screen name="todos/[id]"  /> {/* ini routing dinamis */}
 
               {/* <Stack.Screen name="(fakultas)" options={{ headerShown: false }} />  */}
               {/* ini biar semua page di fakultas g nunjukin header */}
