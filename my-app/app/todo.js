@@ -1,41 +1,87 @@
-//aplikasi CRUD todo list
+//aplikasi CRUD todo list todo.tsx
 import React from 'react'
 import { StyleSheet, Appearance, Platform, View, ScrollView, FlatList, Text, TextInput, Pressable} from "react-native";
 import { Colors } from '@/constants/theme';
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, Octicons } from '@expo/vector-icons';
 
 import { data } from '@/data/todo.js'
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { ThemeContext } from '@/context/themeContext.js';
+import AsyncStorage from "@react-native-async-storage/async-storage"; // ini library untuk nyimpen data supaya pas reload datanya g ilang
+
+import { Inter_500Medium, useFonts } from '@expo-google-fonts/inter'
+import Animated, { LinearTransition } from 'react-native-reanimated'; //animasi dasar react native
+
 
 const todo = () => {
-    const ColorScheme = Appearance.getColorScheme()
-    const theme = ColorScheme === 'dark' ? Colors.dark : Colors.light
+    const   {skemaWarna, setSkemaWarna, tema} = useContext(ThemeContext)
+
+    
+    const [loaded, error] = useFonts({
+        Inter_500Medium
+    })
+
 
     /* data list todo ditampung di array dlu dan di sort berdasarkan id terbesar ke kecil */
-    const [todos, setTodos] = useState(data.sort((a,b) => b.id - a.id)) 
+    const [todos, setTodos] = useState([]) 
     const [text, setText] = useState('') /* untuk nampung input text */
 
+    useEffect(() => { //ini untuk loading data ke dlm app kt
+    const ambilData = async () => {
+        try {
+            const jsonValue = await AsyncStorage.getItem("TodoApp")
+            const storageTodos = jsonValue ? JSON.parse(jsonValue) : null
+
+            if (storageTodos && storageTodos.length > 0) {
+                setTodos(storageTodos.sort((a, b) => b.id - a.id)) // set array todos dengan data yg uda di ambil
+            } else {
+                setTodos(data.sort((a, b) => b.id - a.id))
+            }
+        } catch (error) {
+            console.log("Gagal load todo:", error)
+        }
+    }
+
+    ambilData()
+    }, [])
+
+
+    useEffect(() => { // ini untuk nyimpen data ke lokal storage 
+    const simpanData = async () => {
+        try {
+            const jsonValue = JSON.stringify(todos)
+            await AsyncStorage.setItem("TodoApp", jsonValue)
+        } catch (error) {
+            console.log("Gagal simpan todo:", error)
+        }
+    }
+
+    if (todos.length > 0) {
+        simpanData()
+    }
+    }, [todos])
+    
     /* tiap fitur dibuat jd function */
     const addTodo = () => { /* fitur Create basically cm append array todo*/
         if (text.trim()) {
-            const newId = todo.length > 0 ? todos[0].id + 1 : 1
+            const newId = todos.length > 0 ? todos[0].id + 1 : 1
             setTodos([{ id : newId, title: text, completed: false}, ...todos])
             setText('')
         }
     }
-    const updateTodo = (id:any) => { /* fitur Update untuk tau todo dah komplit ato nda */
+    const updateTodo = (id) => { /* fitur Update untuk tau todo dah komplit ato nda */
         setTodos(todos.map(todo => 
             todo.id === id ? {...todo, completed: !todo.completed} : todo
         ))
     }
-    const deleteTodo = (id:any) => { /* fitur Delete */
+    const deleteTodo = (id) => { /* fitur Delete */
         setTodos(todos.filter(
             todo => todo.id !== id
         ))
     }
 
-    const styles = myStyle(ColorScheme, theme) 
+    const styles = myStyle(skemaWarna, tema) 
     const Container = Platform.OS === "web" ? ScrollView : SafeAreaView
 
   return (
@@ -53,15 +99,24 @@ const todo = () => {
         
             {/* tombol add */}
             <Pressable onPress={addTodo} style={styles.tombol}>
-                <Text style={{ color: theme.text}} >
+                <Text style={{ color: tema.text}} >
                     Add
                 </Text>
             </Pressable>
+            {/* tombol toggle theme */}
+            <Pressable onPress={() => setSkemaWarna(
+                skemaWarna === 'light' ? 'dark' : 'light'
+            )} style={styles.tombol}>
+                <Octicons name={skemaWarna === 'dark' ? "sun" : "moon"} size={20} color={tema.text} />
+            </Pressable>
         </View>
         {/* Bagian Read */}
-        <FlatList 
+        <Animated.FlatList 
             data={todos}
             keyExtractor={(items) => items.id.toString()}
+            contentContainerStyle = {{ flexGrow:1}}
+            itemLayoutAnimation={LinearTransition}
+            keyboardDismissMode='on-drag'
             renderItem={({item}) => (
                 <View style={styles.row}>
                     <View style={styles.textRow}>
@@ -87,11 +142,11 @@ const todo = () => {
 
 export default todo
 
-function myStyle(color:any, theme:any) {
+function myStyle(color, theme) {
  
     return StyleSheet.create({
         container : {
-            backgroundColor: theme.background
+            backgroundColor: theme.background,
         },
         title :{
             fontSize: 20,
@@ -131,7 +186,9 @@ function myStyle(color:any, theme:any) {
             width: '65%',
             paddingLeft: 10,
             paddingRight: 5,
-            flexGrow: 1
+            flexGrow: 1,
+            fontFamily: 'Inter_500Medium'
+
         },
         searchBar: {
             width: '75%',
